@@ -13,8 +13,6 @@ const App = ()=> {
   const [posts, setPosts] = useState ([]);
   const[registerUsername, setRegisterUsername] = useState ('');
   const [registerPassword, setRegisterPassword] = useState ('');
-  const[loginUsername, setLoginUsername] = useState ('');
-  const [loginPassword, setLoginPassword] = useState ('');
   const [user, setUser] = useState({});
   
   const exchangeTokenForUser = () => {

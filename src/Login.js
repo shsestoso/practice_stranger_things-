@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 const Login = (props)=> {
     const exchangeTokenForUser = props.exchangeTokenForUser;
-    const[loginUsername, setLoginUsername] = useState ('');
-    const [loginPassword, setLoginPassword] = useState ('');
+    const[username, setUsername] = useState ('');
+    const [password, setPassword] = useState ('');
 
   
     const login = (ev) => {
@@ -17,8 +17,8 @@ const Login = (props)=> {
           },
              body: JSON.stringify({
                  user: {
-                username: loginUsername,
-                password: loginPassword
+                username: username,
+                password: password,
              }
         })
     })
@@ -40,14 +40,14 @@ const Login = (props)=> {
       <form onSubmit = { login }> 
           <input 
             placeholder = 'username' 
-            value= {loginUsername} 
-            onChange = {ev => setLoginUsername(ev.target.value)}/>
+            value= {username} 
+            onChange = {ev => setUsername(ev.target.value)}/>
           
           <input 
             placeholder = 'password'
-            value= {loginPassword} 
-            onChange = {ev => setLoginPassword(ev.target.value)}/>
-          <button> Login </button>
+            value= {password} 
+            onChange = {ev => setPassword(ev.target.value)}/>
+          <button disabled = {!username || !password}> Login </button>
        </form>
     )
  }
