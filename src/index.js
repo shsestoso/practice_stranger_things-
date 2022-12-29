@@ -56,8 +56,8 @@ useEffect (()=> {
       {
         !user._id ? (
       <div> 
-      < Register />
-      <Login exchangeTokenForUser = { exchangeTokenForUser} />
+          < Register />
+          <Login exchangeTokenForUser = { exchangeTokenForUser} />
       </div>) : null
     }
       
