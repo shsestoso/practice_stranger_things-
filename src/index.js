@@ -16,7 +16,24 @@ const App = ()=> {
   const [loginPassword, setLoginPassword] = useState ('');
   const [user, setUser] = useState({});
   
+  const exchangeTokenForUser = () => {
+    const token = window.localStorage.getItem('token');
+    if (token){
+      fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
+         headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+         },
+      })
+        .then(response => response.json())
+        .then(result => {
+          const user = result.data;
+          setUser(user);
+    })
+        .catch(err => console.log(err));
   
+  }
+  }
 
   const login = (ev) => {
     ev.preventDefault();
@@ -42,19 +59,7 @@ const App = ()=> {
         }
         const token = result.data.token;
           window.localStorage.setItem('token', token);
-           fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
-              headers: {
-             'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-       },
-
-      })
-      .then(response => response.json())
-      .then(result => {
-          const user= result.data;
-            setUser(user);
-      })
-      .catch(err => console.log(err));   
+          exchangeTokenForUser();
      })
        .catch(err => console.log(err));
    }
@@ -83,24 +88,10 @@ const App = ()=> {
         })
           .catch(err => console.log(err));
       }
-  
-useEffect (()=> {
-  const token = window.localStorage.getItem('token');
-    if (token){
-      fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
-         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-         },
-      })
-        .then(response => response.json())
-        .then(result => {
-          const user = result.data;
-          setUser(user);
-    })
-        .catch(err => console.log(err));
 
-  }
+
+useEffect (()=> {
+  exchangeTokenForUser()
 }, [])
 
   useEffect(() => {
