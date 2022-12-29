@@ -5,14 +5,13 @@ import Posts from './Posts';
 import Post from './Post';
 import Nav from './Nav';
 import Login from './Login';
+import Register from './Register';
 
 
 
 
 const App = ()=> {
   const [posts, setPosts] = useState ([]);
-  const[registerUsername, setRegisterUsername] = useState ('');
-  const [registerPassword, setRegisterPassword] = useState ('');
   const [user, setUser] = useState({});
   
   const exchangeTokenForUser = () => {
@@ -33,32 +32,6 @@ const App = ()=> {
   
   }
   }
-
-  
-  const register = (ev) => {
-    ev.preventDefault();
-      fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/register', {
-        method: "POST",
-        headers: {
-        'Content-Type': 'application/json'
-       },
-         body: JSON.stringify({
-          user: {
-            username: registerUsername,
-            password: registerPassword
-          }
-        })
-      })
-         .then(response => response.json())
-          .then(result => {
-            if (!result.success){
-              throw result.error;
-            }
-            console.log(result);
-        })
-          .catch(err => console.log(err));
-      }
-
 
 useEffect (()=> {
   exchangeTokenForUser()
@@ -83,18 +56,7 @@ useEffect (()=> {
       {
         !user._id ? (
       <div> 
-      <form onSubmit = { register }> 
-          <input 
-            placeholder = 'username' 
-            value= {registerUsername} 
-            onChange = {ev => setRegisterUsername(ev.target.value)}/>
-          
-          <input 
-            placeholder = 'password'
-            value= {registerPassword} 
-            onChange = {ev => setRegisterPassword(ev.target.value)}/>
-          <button> Register </button>
-      </form>
+      < Register />
       <Login exchangeTokenForUser = { exchangeTokenForUser} />
       </div>) : null
     }
