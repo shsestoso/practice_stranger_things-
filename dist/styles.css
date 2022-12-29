@@ -1,3 +1,40 @@
 body {
   font-family: verdana;
+  background-color: rgb(222, 226,255);
+}
+
+h1{
+  background-color: rgb(254,234,250);
+  padding: 0.5rem;
+  text-align: center;
+  color: rgb(142,154,175)}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+nav a.selected{
+  border: solid 2px rgb(203,192,211);
+  padding: 8px;
+}
+
+input,button{
+  height: 2rem;
+
+}
+
+form {
+  display: flex ;
+  flex-direction: column;
+}
+
+form > * {
+  margin: 0.5rem
+}
+button{
+  background-color: rgb(142,154,175);
+  color: white;
+  font-weight: bold;
 }
