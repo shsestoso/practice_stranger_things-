@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route,} from 'react-router-dom';
 import Posts from './Posts';
 import Post from './Post';
 import Nav from './Nav';
+import Login from './Login';
 
 
 
@@ -35,36 +36,7 @@ const App = ()=> {
   }
   }
 
-  const login = (ev) => {
-    ev.preventDefault();
-    console.log('login');
-     fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/login',
-      {
-        method: "POST",
-        headers: {
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify({
-         user: {
-          username: loginUsername,
-          password: loginPassword
-       }
-      })
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (!result.success){
-          console.log(result);
-          throw result.error;
-        }
-        const token = result.data.token;
-          window.localStorage.setItem('token', token);
-          exchangeTokenForUser();
-     })
-       .catch(err => console.log(err));
-   }
-
-
+  
   const register = (ev) => {
     ev.preventDefault();
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/register', {
@@ -125,18 +97,7 @@ useEffect (()=> {
             onChange = {ev => setRegisterPassword(ev.target.value)}/>
           <button> Register </button>
       </form>
-      <form onSubmit = { login }> 
-          <input 
-            placeholder = 'username' 
-            value= {loginUsername} 
-            onChange = {ev => setLoginUsername(ev.target.value)}/>
-          
-          <input 
-            placeholder = 'password'
-            value= {loginPassword} 
-            onChange = {ev => setLoginPassword(ev.target.value)}/>
-          <button> Login </button>
-       </form>
+      <Login exchangeTokenForUser = { exchangeTokenForUser} />
       </div>) : null
     }
       
