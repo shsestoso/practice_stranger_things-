@@ -13,9 +13,11 @@ import Register from './Register';
 const App = ()=> {
   const [posts, setPosts] = useState ([]);
   const [user, setUser] = useState({});
+  const [token, setToken] = useState(null);
   
   const exchangeTokenForUser = () => {
     const token = window.localStorage.getItem('token');
+    setToken(token);
     if (token){
       fetch('https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-AM/users/me', {
          headers: {

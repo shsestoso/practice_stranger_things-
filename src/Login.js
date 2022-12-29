@@ -45,6 +45,7 @@ const Login = (props)=> {
           
           <input 
             placeholder = 'password'
+            type = 'password'
             value= {password} 
             onChange = {ev => setPassword(ev.target.value)}/>
           <button disabled = {!username || !password}> Login </button>

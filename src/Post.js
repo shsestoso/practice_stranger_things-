@@ -15,6 +15,7 @@ const Post = (props) => {
         <p> Description: {post.description} </p>
         <p> Price = {post.price} </p>
         <p> Location = {post.location} </p>
+        <p> Will Deliver: {post.willDeliver} </p>
       </div>
     )
   }
